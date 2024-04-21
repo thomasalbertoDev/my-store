@@ -73,7 +73,7 @@ const RegisterView = () => {
         </form>
       </div>
       <p className={styles.register__link}>
-        Dont have an account yet? <Link href="/auth/login">Login here</Link>
+        Already have an account? <Link href="/auth/login">Login here</Link>
       </p>
     </div>
   );
