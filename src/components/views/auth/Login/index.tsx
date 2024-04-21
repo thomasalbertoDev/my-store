@@ -3,6 +3,8 @@ import styles from './Login.module.scss';
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
+import { Icon } from '@iconify/react';
+import { redirect } from 'next/dist/server/api-utils';
 
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -56,9 +58,15 @@ const LoginView = () => {
             <input id="password" name="password" type="password" className={styles.login__form__item__input} placeholder="Input your password..." />
           </div>
           <button type="submit" className={styles.login__form__button}>
-            {isLoading ? 'Loading...' : 'login'}
+            {isLoading ? 'Loading...' : 'Login'}
           </button>
         </form>
+        <hr className={styles.login__form__devider} />
+        <div className={styles.login__form__other}>
+          <button type="button" onClick={() => signIn('google', { callbackUrl, redirect: false })} className={styles.login__form__other__button}>
+            <Icon icon="devicon:google" width="20" height="20" /> Login With Google
+          </button>
+        </div>
       </div>
       <p className={styles.login__link}>
         Don{"'"}t have an account yet? <Link href="/auth/register">Register here</Link>
