@@ -1,5 +1,5 @@
-import { signIn, signInWithGoogle } from '@/lib/firebase/service';
 import { NextAuthOptions } from 'next-auth';
+import { signIn, signInWithGoogle } from '@/services/auth';
 import bcrypt from 'bcrypt';
 import NextAuth from 'next-auth/next';
 import GoogleProviver from 'next-auth/providers/google';

@@ -4,7 +4,8 @@ import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { Icon } from '@iconify/react';
-import { redirect } from 'next/dist/server/api-utils';
+import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
 
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,25 +48,21 @@ const LoginView = () => {
       <div className={styles.login__form}>
         <form onSubmit={handleSubmit}>
           {/* Email */}
-          <div className={styles.login__form__item}>
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" className={styles.login__form__item__input} placeholder="Input your email..." />
-          </div>
+          <Input label="Email" name="email" type="email" placeholder="Input your email..." />
 
           {/* Password */}
-          <div className={styles.login__form__item}>
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" className={styles.login__form__item__input} placeholder="Input your password..." />
-          </div>
-          <button type="submit" className={styles.login__form__button}>
+          <Input label="Password" name="password" type="password" placeholder="Input your password..." />
+
+          {/* Submit */}
+          <Button variant="primary" type="submit" className={styles.login__form__button}>
             {isLoading ? 'Loading...' : 'Login'}
-          </button>
+          </Button>
         </form>
         <hr className={styles.login__form__devider} />
         <div className={styles.login__form__other}>
-          <button type="button" onClick={() => signIn('google', { callbackUrl, redirect: false })} className={styles.login__form__other__button}>
-            <Icon icon="devicon:google" width="20" height="20" /> Login With Google
-          </button>
+          <Button variant="gray" type="button" onClick={() => signIn('google', { callbackUrl, redirect: false })} className={styles.login__form__other__button}>
+            <Icon icon="devicon:google" width="18" height="18" /> Login With Google
+          </Button>
         </div>
       </div>
       <p className={styles.login__link}>
