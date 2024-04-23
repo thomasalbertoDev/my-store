@@ -1,9 +1,9 @@
-import { NextAuthOptions } from 'next-auth';
-import { signIn, signInWithGoogle } from '@/services/auth';
 import bcrypt from 'bcrypt';
 import NextAuth from 'next-auth/next';
 import GoogleProviver from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { NextAuthOptions } from 'next-auth';
+import { signIn, signInWithGoogle } from '@/services/auth/services';
 
 const authOptions: NextAuthOptions = {
   session: {

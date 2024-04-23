@@ -1,9 +1,10 @@
-import Link from 'next/link';
-import styles from './Register.module.scss';
-import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/router';
 import Input from '@/components/ui/Input';
+import styles from './Register.module.scss';
 import Button from '@/components/ui/Button';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import authServices from '@/services/auth';
+import { useRouter } from 'next/router';
+import { FormEvent, useState } from 'react';
 
 const RegisterView = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,14 +23,7 @@ const RegisterView = () => {
       password: form.password.value,
     };
 
-    const result = await fetch('/api/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
+    const result = await authServices.registerAccount(data);
     if (result.status === 200) {
       form.reset();
       setIsLoading(false);
@@ -41,33 +35,26 @@ const RegisterView = () => {
   };
 
   return (
-    <div className={styles.register}>
-      <h1 className={styles.register__title}>Register</h1>
-      {error && <p className={styles.register__error}>{error}</p>}
-      <div className={styles.register__form}>
-        <form onSubmit={handleSubmit}>
-          {/* Email */}
-          <Input name="email" type="email" label="Email" placeholder="Input your email..." />
+    <AuthLayout title="Register" error={error} link="/auth/login" linkText="Already have an account? Login">
+      <form onSubmit={handleSubmit}>
+        {/* Email */}
+        <Input name="email" type="email" label="Email" placeholder="Input your email..." />
 
-          {/* Fullname */}
-          <Input name="fullname" type="text" label="Fullname" placeholder="Input your fullname..." />
+        {/* Fullname */}
+        <Input name="fullname" type="text" label="Fullname" placeholder="Input your fullname..." />
 
-          {/* Phone */}
-          <Input name="phone" type="text" label="Phone" placeholder="Input your number phone..." />
+        {/* Phone */}
+        <Input name="phone" type="text" label="Phone" placeholder="Input your number phone..." />
 
-          {/* Password */}
-          <Input name="password" type="password" label="Password" placeholder="Input your password..." />
+        {/* Password */}
+        <Input name="password" type="password" label="Password" placeholder="Input your password..." />
 
-          {/* Submit */}
-          <Button type="submit" variant="primary" className={styles.register__form__button}>
-            {isLoading ? 'Loading...' : 'Register'}
-          </Button>
-        </form>
-      </div>
-      <p className={styles.register__link}>
-        Already have an account? <Link href="/auth/login">Login here</Link>
-      </p>
-    </div>
+        {/* Submit */}
+        <Button type="submit" variant="primary" className={styles.register__button}>
+          {isLoading ? 'Loading...' : 'Register'}
+        </Button>
+      </form>
+    </AuthLayout>
   );
 };
 
