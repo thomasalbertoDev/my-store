@@ -48,6 +48,9 @@ export async function signInWithGoogle(
   data: {
     email: string;
     role?: string;
+    password?: string;
+    created_at?: string;
+    updated_at?: string;
   },
   callback: Function
 ) {
@@ -57,6 +60,9 @@ export async function signInWithGoogle(
     callback(user[0]);
   } else {
     data.role = 'member';
+    data.created_at = new Date().toISOString();
+    data.updated_at = new Date().toISOString();
+    data.password = '';
     await addData('users', data, (result: boolean) => {
       if (result) {
         callback(data);

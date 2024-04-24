@@ -1,8 +1,8 @@
 .sidebar {
-  background-color: rgb(0, 94, 255);
+  background-color: #000;
   color: #fff;
   padding: 20px;
-  width: 280px;
+  width: 320px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,18 +27,18 @@
         transition: 0.2s;
         padding: 14px;
         &__title {
-          font-weight: 600;
+          font-weight: 500;
           font-size: 18px;
         }
         &:hover {
           background-color: #fff;
-          color: rgb(0, 94, 255);
+          color: #000;
           cursor: pointer;
           transition: 0.2s;
         }
         &__active {
           background-color: #fff;
-          color: rgb(0, 94, 255);
+          color: #000;
           cursor: pointer;
           transition: 0.2s;
         }
@@ -53,7 +53,7 @@
       justify-content: center;
       gap: 6px;
       font-size: 16px;
-      color:rgb(0, 94, 255)
+      color: #000;
     }
   }
 }
