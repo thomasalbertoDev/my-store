@@ -42,7 +42,7 @@ const LoginView = () => {
   };
 
   return (
-    <AuthLayout title="Login" error="" link="/auth/register" linkText="Dont have an account? Register">
+    <AuthLayout title="Login" error={error} link="/auth/register" linkText="Dont have an account? Register">
       <form onSubmit={handleSubmit}>
         {/* Email */}
         <Input label="Email" name="email" type="email" placeholder="Input your email..." />
@@ -51,7 +51,7 @@ const LoginView = () => {
         <Input label="Password" name="password" type="password" placeholder="Input your password..." />
 
         {/* Submit */}
-        <Button variant="primary" type="submit" className={styles.login__button}>
+        <Button variant="black" type="submit" className={styles.login__button}>
           {isLoading ? 'Loading...' : 'Login'}
         </Button>
       </form>

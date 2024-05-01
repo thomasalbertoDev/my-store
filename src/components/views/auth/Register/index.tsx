@@ -50,7 +50,7 @@ const RegisterView = () => {
         <Input name="password" type="password" label="Password" placeholder="Input your password..." />
 
         {/* Submit */}
-        <Button type="submit" variant="primary" className={styles.register__button}>
+        <Button type="submit" variant="black" className={styles.register__button}>
           {isLoading ? 'Loading...' : 'Register'}
         </Button>
       </form>
