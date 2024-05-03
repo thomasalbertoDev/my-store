@@ -46,8 +46,10 @@ export async function signIn(email: string) {
 // Fungsi login with google
 export async function signInWithGoogle(
   data: {
+    id?: string;
     email: string;
     role?: string;
+    image?: string;
     password?: string;
     created_at?: string;
     updated_at?: string;
@@ -63,8 +65,9 @@ export async function signInWithGoogle(
     data.created_at = new Date().toISOString();
     data.updated_at = new Date().toISOString();
     data.password = '';
-    await addData('users', data, (result: boolean) => {
-      if (result) {
+    await addData('users', data, (status: boolean, res: any) => {
+      data.id = res.path.replace('users/', '');
+      if (status) {
         callback(data);
       }
     });

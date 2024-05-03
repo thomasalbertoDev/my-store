@@ -36,12 +36,11 @@ export async function retrieveDataByField(collectionName: string, field: string,
 // Fungsi untuk menambahkan data ke firestore
 export async function addData(collectionName: string, data: any, callback: Function) {
   await addDoc(collection(firestore, collectionName), data)
-    .then(() => {
-      callback(true);
+    .then((res) => {
+      callback(true, res);
     })
     .catch((error) => {
       callback(false);
-      console.log(error);
     });
 }
 

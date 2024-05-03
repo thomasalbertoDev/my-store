@@ -10,7 +10,7 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
-const disableNavbar = ['auth', 'admin'];
+const disableNavbar = ['auth', 'admin', 'member'];
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { pathname } = useRouter();
